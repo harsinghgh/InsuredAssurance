@@ -1,0 +1,13 @@
+name: Variables demo
+run-name:  Testing env variable
+
+on: [push]
+
+env:
+  owner_name: Harpreet
+
+jobs:
+  use_env_var:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Job use_env_var is executing as part of new workflow - from $owner_name"
