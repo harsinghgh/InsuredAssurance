@@ -18,10 +18,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Invoke Jenkins Deployment Job
-      uses: appleboy/jenkins-action@master
-      with:
-        url: "http://54.196.172.13:8080"
-        user: "admin"
-        token: ${{ secrets.JENKINS_TOKEN }}
-        job: "TomcatDeployment"
+    - name: Trigger Jenkins Job Via Curl
+      run: |
+       curl -X POST "http://54.196.172.13:8080/job/TomcatDeployment/build" \
+        --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }}"
