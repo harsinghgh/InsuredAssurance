@@ -27,8 +27,9 @@ jobs:
         port: ${{ secrets.PORT }}
         scp: |
           ./target/*.war => /tmp/
-        last_ssh: |
+        first_ssh: |
           ls -lart /tmp
+        connect_timeout: 30  # Increase timeout if needed
 
     - name: Trigger Jenkins Job Via Curl
       run: |
