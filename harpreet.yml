@@ -1,0 +1,8 @@
+user:
+  name: Harpreet Singh
+  occupation: Student
+  course: Simplilearn
+  project: InsuredAssurance
+  details:
+    - learning: Devops
+    - goal: Complete the course successfully
