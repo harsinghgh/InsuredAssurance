@@ -18,6 +18,18 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: SCP files to remote server
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+        host: ${{ secrets.HOST }}
+        user: ${{ secrets.USERNAME }}
+        pass: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        scp: |
+          ./target/*.war => /tmp/
+        last_ssh: |
+          ls -lart /tmp
+
     - name: Trigger Jenkins Job Via Curl
       run: |
        curl -X POST "http://54.196.172.13:8080/job/TomcatDeployment/build" \
