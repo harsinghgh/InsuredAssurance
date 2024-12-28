@@ -14,13 +14,6 @@ node(){
 		"""
 	}
 	
-	stage('Code Scan'){
-		withSonarQubeEnv(credentialsId: 'SonarQubeCreds') {
-			sh "${sonarHome}/bin/sonar-scanner"
-		}
-		
-	}
-	
 	stage('Code Deployment'){
 		deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://54.196.172.13:9090/')], contextPath: 'Planview', onFailure: false, war: 'target/*.war'
 	}
